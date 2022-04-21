@@ -1,6 +1,18 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchTodos } from './core/features/todos/todosReducers'
+import { selectTodosIds, selectTodos } from './core/features/todos/selectors'
 
 function App() {
+  const todos = useSelector((state) => state)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchTodos())
+  }, [dispatch])
+
+  console.log(todos)
+
   return (
     <div className="App">
       <nav>
